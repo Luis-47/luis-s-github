@@ -1,0 +1,90 @@
+var NUM_COLS = 7;
+var NUM_ROWS = 6;
+var board = [];
+var Circle_Radius = getWidth() / 14;
+var x = Circle_Radius;
+var y = Circle_Radius;
+var playerRed = true;
+var playerYellow = false;
+var section;
+
+//Put your constants here!
+var coinGrid = new Grid(NUM_ROWS, NUM_COLS)
+
+function start(){
+    
+    background();
+    blankSpaces();
+    mouseClickMethod(Toggle);
+    
+}
+
+
+function background () {
+    var blue_background = new Rectangle(getWidth(), getHeight()/3 * 2 + Circle_Radius - 2);
+    blue_background.setColor(Color.blue);
+    add(blue_background);
+}
+
+
+function blankSpaces(){
+    for(var r = 0; r < 6 ; r++) {
+        
+        for(var c = 0; c < getWidth()/ 14; c++){
+            
+            section = new Circle(Circle_Radius);
+            section.setColor(Color.white);
+            section.setPosition(x * (c *2) + Circle_Radius, y * (r *2) + Circle_Radius);
+            board.push(section)
+            add(section);
+            
+            
+        }
+         
+            
+    }
+    
+}
+
+function Toggle(e) {
+    var elem = getElementAt(e.getX(), e.getY());
+    
+    if (elem != null) {
+       if (playerRed) {
+           elem.setColor(Color.red);
+           playerYellow = true;
+           playerRed = false;
+           println("no")
+       }else{
+           elem.setColor(Color.yellow);
+           playerYellow = false;
+           playerRed = true
+           println("yes")
+           
+            
+       }
+       
+        
+    }
+    
+}
+function circles() {
+    board = [];
+    
+    for(let r = 0; r < NUM_ROWS; r++) {
+        let NUM_ROW = [];
+        
+        for(let c = 0; c < NUM_COLS; c++) {
+        
+            NUM_ROW.push('');
+            
+            var section = new Circle(Circle_Radius);
+            section.setColor(Color.white);
+            section.setPosition(x, y);
+            add(section);
+            
+        }
+        y =+ 86
+        board.push(NUM_ROW);
+    }
+}
